@@ -13,6 +13,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+
+<link rel="icon" type="image/png" href="/Logo.png">
+
+<link rel="apple-touch-icon" href="/Logo.png">
+
+
+
 <style>
 :root {
     --blue: #1a73e8;
@@ -1052,6 +1059,31 @@ footer a:hover {
     display: flex;
   }
 }
+/* LEARNORA LOGO */
+
+.main-header .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+}
+
+.main-header .logo img {
+    width: 145px;
+    height: 65px;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px;
+}
+
+/* Mobile Logo */
+
+@media (max-width: 600px) {
+    .main-header .logo img {
+        width: 110px;
+        height: 55px;
+    }
+}
 
 </style>
 </head>
@@ -1059,9 +1091,11 @@ footer a:hover {
 <body>
 
 <!-- NAVIGATION -->
-
 <header class="main-header">
-  <a href="index.html" class="logo">Learnora</a>
+
+  <a href="index.html" class="logo">
+    <img src="Logo.png" alt="Learnora Logo">
+  </a>
 
   <button class="menu-toggle" id="menuBtn"
           aria-label="Open navigation menu">☰</button>
@@ -1079,10 +1113,8 @@ footer a:hover {
     <a href="login.html" class="login-link">Login</a>
     <a href="register.html" class="register-link">Register</a>
   </nav>
+
 </header>
-
-
-
 
 <!-- HERO -->
 
