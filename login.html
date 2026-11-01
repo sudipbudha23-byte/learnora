@@ -35,5 +35,90 @@
   </main>
 
   <script type="module" src="auth.js"></script>
+ 
+<div class="google-login">
+  <h2>Welcome to Learnora</h2>
+  <p>Sign in with your Google Account</p>
+
+  <div id="googleButton"></div>
+
+  <p id="loginStatus" aria-live="polite"></p>
+</div>
+
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
+<script>
+const GOOGLE_CLIENT_ID = "YOUR_GOOGLE_CLIENT_ID";
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx874LBndOfYlg3Pp-v6gqSCA5mleN_k8_9o-A4UDO_9UiTNEy1KLN7IiCVdlEUMHsW/exec";
+
+window.addEventListener("load", () => {
+  const checkGoogle = setInterval(() => {
+    if (!window.google?.accounts?.id) return;
+
+    clearInterval(checkGoogle);
+
+    google.accounts.id.initialize({
+      client_id: GOOGLE_CLIENT_ID,
+      callback: handleGoogleLogin
+    });
+
+    google.accounts.id.renderButton(
+      document.getElementById("googleButton"),
+      {
+        theme: "outline",
+        size: "large",
+        shape: "rectangular",
+        text: "continue_with",
+        width: 280
+      }
+    );
+  }, 200);
+});
+
+async function handleGoogleLogin(response) {
+  const status = document.getElementById("loginStatus");
+  status.textContent = "Verifying your Google Account...";
+
+  try {
+    const result = await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify({
+        action: "googleLogin",
+        credential: response.credential
+      })
+    });
+
+    const data = await result.json();
+
+    if (!data.success) {
+      throw new Error(data.message || "Login failed.");
+    }
+
+    // Keep the Google ID token for authenticated requests.
+    // Do not treat an email stored in localStorage as proof of identity.
+    sessionStorage.setItem(
+      "learnora_google_credential",
+      response.credential
+    );
+
+    status.textContent = "Login successful!";
+
+    window.location.href = "dashboard.html";
+
+  } catch (error) {
+    console.error(error);
+    status.textContent =
+      "Login could not be completed. Check the Apps Script deployment and connection.";
+  }
+}
+</script>
+
+
 </body>
 </html>

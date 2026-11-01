@@ -391,82 +391,49 @@ function loadQuestion() {
       : "Next Question →";
 }
 
-function selectAnswer(selectedIndex) {
-  if (answered) return;
-
-  answered = true;
-
-  const q = questions[currentQuestion];
-  const buttons = answerButtons.querySelectorAll("button");
-
-  buttons.forEach(button => button.disabled = true);
-
-  buttons[q.correct].classList.add("correct");
-
-  if (selectedIndex === q.correct) {
-    score++;
-    feedback.textContent = "✓ Correct! " + q.explanation;
-    feedback.style.color = "#15803d";
-  } else {
-    buttons[selectedIndex].classList.add("wrong");
-    feedback.textContent = "✗ Not quite. " + q.explanation;
-    feedback.style.color = "#dc2626";
-  }
-
-  scoreDisplay.textContent = `Score: ${score}`;
-  nextButton.disabled = false;
-}
-
-
-const GOOGLE_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbx874LBndOfYlg3Pp-v6gqSCA5mleN_k8_9o-A4UDO_9UiTNEy1KLN7IiCVdlEUMHsW/exec";
 
 async function saveResult() {
+  const credential = sessionStorage.getItem(
+    "learnora_google_credential"
+  );
+
   const status = document.getElementById("saveStatus");
 
-  const email = localStorage.getItem("learnora_email");
-
-  if (!email) {
-    status.textContent =
-      "Please register or log in before saving your result.";
+  if (!credential) {
+    status.textContent = "Please sign in with Google first.";
     return;
   }
 
-  const payload = {
-    action: "saveQuiz",
-    email: email,
-    quizTitle: "Learnora General Knowledge Quiz",
-    score: score,
-    totalQuestions: questions.length
-  };
-
   try {
-    const response = await fetch(GOOGLE_SCRIPT_URL, {
-      method: "POST",
-      redirect: "follow",
-      headers: {
-        "Content-Type": "text/plain;charset=utf-8"
-      },
-      body: JSON.stringify(payload)
-    });
+    const response = await fetch(
+      "https://script.google.com/macros/s/AKfycbx874LBndOfYlg3Pp-v6gqSCA5mleN_k8_9o-A4UDO_9UiTNEy1KLN7IiCVdlEUMHsW/exec",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8"
+        },
+        body: JSON.stringify({
+          action: "saveQuiz",
+          credential: credential,
+          quizTitle: "Learnora General Knowledge Quiz",
+          score: score,
+          totalQuestions: questions.length
+        })
+      }
+    );
 
-    const result = await response.json();
+    const data = await response.json();
 
-    if (!result.success) {
-      throw new Error(result.message || "Unable to save result.");
-    }
+    if (!data.success) throw new Error(data.message);
 
-    status.textContent = "✓ Quiz result saved successfully!";
-    status.style.color = "#15803d";
+    status.textContent = "Quiz result saved successfully!";
 
   } catch (error) {
-    console.error("Google Sheets Error:", error);
-
-    status.textContent =
-      "Could not confirm saving. Please check your Apps Script deployment and try again.";
-    status.style.color = "#dc2626";
+    console.error(error);
+    status.textContent = "Could not save your result. Please try again.";
   }
 }
+
 
 async function showResult() {
   document.getElementById("quizContent").style.display = "none";
