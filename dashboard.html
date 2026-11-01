@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Learnora | Student Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      margin: 0;
+      background: #f7f9fc;
+      color: #202124;
+      font-family: Arial, sans-serif;
+    }
+
+    .dashboard-header {
+      background: white;
+      padding: 16px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .brand {
+      color: #1a73e8;
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .dashboard-container {
+      width: min(1100px, 92%);
+      margin: 35px auto;
+    }
+
+    .welcome {
+      margin-bottom: 25px;
+    }
+
+    .welcome h1 {
+      margin-bottom: 8px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card, .panel {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .stat-card strong {
+      display: block;
+      font-size: 28px;
+      color: #1a73e8;
+      margin-top: 10px;
+    }
+
+    .panel {
+      margin-bottom: 24px;
+    }
+
+    .course-card, .history-item, .certificate-item {
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 16px;
+      margin-top: 12px;
+    }
+
+    .progress-track {
+      height: 9px;
+      background: #e8eaed;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 12px 0;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #1a73e8;
+      border-radius: 20px;
+    }
+
+    .muted {
+      color: #687078;
+      font-size: 14px;
+    }
+
+    .logout-btn {
+      border: 0;
+      background: #1a73e8;
+      color: white;
+      padding: 11px 17px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .empty {
+      color: #687078;
+      padding: 14px 0;
+    }
+
+    @media(max-width: 650px) {
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard-header {
+        padding: 14px 4%;
+      }
+
+      .dashboard-container {
+        margin-top: 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="dashboard-header">
+    <div class="brand">Learnora</div>
+    <button class="logout-btn" id="logoutBtn">Logout</button>
+  </header>
+
+  <main class="dashboard-container">
+
+    <section class="welcome">
+      <p class="muted">STUDENT DASHBOARD</p>
+      <h1>Welcome, <span id="studentName">Student</span>!</h1>
+      <p class="muted">Continue learning and track your progress.</p>
+    </section>
+
+    <section class="stats">
+      <div class="stat-card">
+        My Courses
+        <strong id="courseCount">0</strong>
+      </div>
+
+      <div class="stat-card">
+        Quiz Attempts
+        <strong id="quizCount">0</strong>
+      </div>
+
+      <div class="stat-card">
+        Certificates
+        <strong id="certificateCount">0</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>My Courses</h2>
+      <div id="myCourses">
+        <p class="empty">Loading courses...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Quiz History</h2>
+      <div id="quizHistory">
+        <p class="empty">Loading quiz history...</p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>My Certificates</h2>
+      <div id="myCertificates">
+        <p class="empty">Loading certificates...</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>

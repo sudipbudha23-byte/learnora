@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2563eb">
+<title>Quiz Arena | Learnora</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f7fb;
+  color: #172033;
+}
+
+header {
+  background: white;
+  padding: 17px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 12px #0000000d;
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: 800;
+  color: #2563eb;
+}
+
+header a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.container {
+  max-width: 850px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.hero h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  color: #667085;
+  line-height: 1.6;
+}
+
+.quiz-box {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px #1720330d;
+}
+
+.quiz-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 22px;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.progress {
+  height: 9px;
+  background: #e5eaf2;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 28px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+  transition: width .3s;
+}
+
+.question {
+  font-size: 23px;
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.answers {
+  display: grid;
+  gap: 12px;
+}
+
+.answer {
+  padding: 15px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  border-radius: 12px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 16px;
+  transition: .2s;
+}
+
+.answer:hover:not(:disabled) {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.answer:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.answer.correct {
+  background: #dcfce7;
+  border-color: #16a34a;
+}
+
+.answer.wrong {
+  background: #fee2e2;
+  border-color: #dc2626;
+}
+
+.feedback {
+  min-height: 28px;
+  margin-top: 18px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 22px;
+}
+
+.primary-btn {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 13px 23px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.primary-btn:hover {
+  background: #1d4ed8;
+}
+
+.primary-btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.result {
+  display: none;
+  text-align: center;
+  padding: 20px 5px;
+}
+
+.result h2 {
+  font-size: 32px;
+  margin: 15px 0;
+}
+
+.score {
+  font-size: 48px;
+  color: #2563eb;
+  font-weight: 800;
+  margin: 20px 0;
+}
+
+.result p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+#saveStatus {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+footer {
+  text-align: center;
+  color: #94a3b8;
+  padding: 30px 15px;
+}
+
+@media(max-width:600px) {
+  header {
+    padding: 16px 5%;
+  }
+
+  .container {
+    margin: 20px auto;
+    padding: 12px;
+  }
+
+  .hero h1 {
+    font-size: 29px;
+  }
+
+  .quiz-box {
+    padding: 20px;
+  }
+
+  .question {
+    font-size: 20px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Learnora</div>
+  <a href="index.html">← Back to Home</a>
+</header>
+
+<main class="container">
+
+  <section class="hero">
+    <h1>Quiz Arena</h1>
+    <p>Challenge your knowledge. Learn from every question.</p>
+  </section>
+
+  <section class="quiz-box">
+
+    <div id="quizContent">
+
+      <div class="quiz-top">
+        <span id="questionNumber">Question 1 of 8</span>
+        <span id="scoreDisplay">Score: 0</span>
+      </div>
+
+      <div class="progress">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+
+      <h2 class="question" id="questionText"></h2>
+
+      <div class="answers" id="answerButtons"></div>
+
+      <div class="feedback" id="feedback" aria-live="polite"></div>
+
+      <div class="actions">
+        <button class="primary-btn" id="nextButton" disabled>
+          Next Question →
+        </button>
+      </div>
+
+    </div>
+
+    <div class="result" id="resultScreen">
+      <div style="font-size:55px;">🏆</div>
+      <h2>Quiz Completed!</h2>
+      <div class="score" id="finalScore">0 / 8</div>
+      <p id="resultMessage"></p>
+
+      <button class="primary-btn" id="restartButton" style="margin-top:22px;">
+        Try Again
+      </button>
+
+      <p id="saveStatus"></p>
+    </div>
+
+  </section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> Learnora. Learn Smarter. Think Bigger.
+</footer>
+
+<script type="module">
+import { supabase } from "./config.js";
+
+const questions = [
+  {
+    question: "Which planet is known as the Red Planet?",
+    answers: ["Earth", "Mars", "Jupiter", "Venus"],
+    correct: 1,
+    explanation: "Mars is called the Red Planet because of its reddish surface."
+  },
+  {
+    question: "What is the chemical formula of water?",
+    answers: ["CO2", "O2", "H2O", "NaCl"],
+    correct: 2,
+    explanation: "A water molecule contains two hydrogen atoms and one oxygen atom."
+  },
+  {
+    question: "What is the value of 12 × 8?",
+    answers: ["86", "96", "108", "92"],
+    correct: 1,
+    explanation: "12 multiplied by 8 equals 96."
+  },
+  {
+    question: "Which organ pumps blood around the human body?",
+    answers: ["Lungs", "Brain", "Heart", "Kidneys"],
+    correct: 2,
+    explanation: "The heart pumps blood throughout the body."
+  },
+  {
+    question: "Which gas do plants absorb during photosynthesis?",
+    answers: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+    correct: 2,
+    explanation: "Plants absorb carbon dioxide during photosynthesis."
+  },
+  {
+    question: "Which language is mainly used to structure web pages?",
+    answers: ["HTML", "Python", "C++", "SQL"],
+    correct: 0,
+    explanation: "HTML defines the structure and content of web pages."
+  },
+  {
+    question: "What is the SI unit of force?",
+    answers: ["Joule", "Watt", "Newton", "Pascal"],
+    correct: 2,
+    explanation: "The SI unit of force is the Newton (N)."
+  },
+  {
+    question: "Which is the largest ocean on Earth?",
+    answers: ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+    correct: 3,
+    explanation: "The Pacific Ocean is the largest ocean on Earth."
+  }
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const questionText = document.getElementById("questionText");
+const answerButtons = document.getElementById("answerButtons");
+const questionNumber = document.getElementById("questionNumber");
+const scoreDisplay = document.getElementById("scoreDisplay");
+const feedback = document.getElementById("feedback");
+const nextButton = document.getElementById("nextButton");
+const progressBar = document.getElementById("progressBar");
+
+function loadQuestion() {
+  answered = false;
+
+  const q = questions[currentQuestion];
+
+  questionNumber.textContent =
+    `Question ${currentQuestion + 1} of ${questions.length}`;
+
+  scoreDisplay.textContent = `Score: ${score}`;
+
+  questionText.textContent = q.question;
+  feedback.textContent = "";
+  answerButtons.innerHTML = "";
+  nextButton.disabled = true;
+
+  progressBar.style.width =
+    `${(currentQuestion / questions.length) * 100}%`;
+
+  q.answers.forEach((answer, index) => {
+    const button = document.createElement("button");
+
+    button.className = "answer";
+    button.textContent = answer;
+
+    button.addEventListener("click", () => selectAnswer(index));
+
+    answerButtons.appendChild(button);
+  });
+
+  nextButton.textContent =
+    currentQuestion === questions.length - 1
+      ? "See My Result"
+      : "Next Question →";
+}
+
+function selectAnswer(selectedIndex) {
+  if (answered) return;
+
+  answered = true;
+
+  const q = questions[currentQuestion];
+  const buttons = answerButtons.querySelectorAll("button");
+
+  buttons.forEach(button => button.disabled = true);
+
+  buttons[q.correct].classList.add("correct");
+
+  if (selectedIndex === q.correct) {
+    score++;
+    feedback.textContent = "✓ Correct! " + q.explanation;
+    feedback.style.color = "#15803d";
+  } else {
+    buttons[selectedIndex].classList.add("wrong");
+    feedback.textContent = "✗ Not quite. " + q.explanation;
+    feedback.style.color = "#dc2626";
+  }
+
+  scoreDisplay.textContent = `Score: ${score}`;
+  nextButton.disabled = false;
+}
+
+async function saveResult() {
+  const status = document.getElementById("saveStatus");
+
+  try {
+    const { data, error: userError } = await supabase.auth.getUser();
+
+    if (userError || !data.user) {
+      status.textContent =
+        "Login required: Your score is shown, but it was not saved. Please log in to save your result.";
+      return;
+    }
+
+    const { error } = await supabase
+      .from("quiz_results")
+      .insert({
+        student_id: data.user.id,
+        quiz_title: "Learnora General Knowledge Quiz",
+        score: score,
+        total_questions: questions.length
+      });
+
+    if (error) throw error;
+
+    status.textContent = "✓ Your quiz result has been saved successfully!";
+    status.style.color = "#15803d";
+
+  } catch (error) {
+    console.error("Save error:", error);
+
+    status.textContent =
+      "Your score is ready, but saving failed. Check your database setup.";
+    status.style.color = "#dc2626";
+  }
+}
+
+async function showResult() {
+  document.getElementById("quizContent").style.display = "none";
+
+  const resultScreen = document.getElementById("resultScreen");
+  resultScreen.style.display = "block";
+
+  document.getElementById("finalScore").textContent =
+    `${score} / ${questions.length}`;
+
+  const percentage = Math.round((score / questions.length) * 100);
+
+  document.getElementById("resultMessage").textContent =
+    `You scored ${percentage}%. Keep practicing and improving your knowledge!`;
+
+  progressBar.style.width = "100%";
+
+  await saveResult();
+}
+
+nextButton.addEventListener("click", () => {
+  if (!answered) return;
+
+  if (currentQuestion === questions.length - 1) {
+    showResult();
+  } else {
+    currentQuestion++;
+    loadQuestion();
+  }
+});
+
+document.getElementById("restartButton").addEventListener("click", () => {
+  currentQuestion = 0;
+  score = 0;
+  answered = false;
+
+  document.getElementById("resultScreen").style.display = "none";
+  document.getElementById("quizContent").style.display = "block";
+  document.getElementById("saveStatus").textContent = "";
+
+  loadQuestion();
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+loadQuestion();
+</script>
+
+</body>
+</html>

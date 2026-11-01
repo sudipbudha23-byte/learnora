@@ -1,0 +1,1714 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffffff">
+
+<title>Learnora | Learn Smarter. Think Bigger.</title>
+<meta name="description" content="Learnora is a modern learning platform for students. Explore lessons, quizzes, science, technology and more.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --blue: #1a73e8;
+    --blue-light: #e8f0fe;
+    --green: #188038;
+    --yellow: #f9ab00;
+    --purple: #8430ce;
+    --text: #202124;
+    --muted: #5f6368;
+    --border: #e8eaed;
+    --background: #ffffff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--background);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 75px;
+    padding: 0 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,.96);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.logo span {
+    color: var(--blue);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-size: 14px;
+    color: #444;
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: var(--blue);
+}
+
+.nav-button {
+    background: var(--blue);
+    color: white !important;
+    padding: 11px 21px;
+    border-radius: 25px;
+    font-weight: 600 !important;
+}
+
+.menu-btn {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 26px;
+}
+
+/* HERO */
+
+.hero {
+    padding: 100px 7% 85px;
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    align-items: center;
+    gap: 55px;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #e8f0fe;
+    color: #1967d2;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 5.2vw, 68px);
+    line-height: 1.12;
+    letter-spacing: -3px;
+    font-weight: 800;
+    max-width: 650px;
+}
+
+.hero h1 span {
+    color: var(--blue);
+}
+
+.hero p {
+    color: var(--muted);
+    font-size: 17px;
+    max-width: 530px;
+    margin: 25px 0 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 13px;
+    flex-wrap: wrap;
+}
+
+.primary-btn {
+    background: var(--blue);
+    color: white;
+    padding: 14px 25px;
+    border-radius: 30px;
+    border: 1px solid var(--blue);
+    font-size: 14px;
+    font-weight: 600;
+    transition: .2s;
+}
+
+.primary-btn:hover {
+    background: #1557b0;
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: white;
+    color: var(--text);
+    padding: 14px 25px;
+    border-radius: 30px;
+    border: 1px solid #dadce0;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.secondary-btn:hover {
+    background: #f8f9fa;
+}
+
+.hero-image {
+    min-height: 390px;
+    border-radius: 30px;
+    background: #e8f0fe;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-image::before,
+.hero-image::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+}
+
+.hero-image::before {
+    width: 260px;
+    height: 260px;
+    background: #c5d9ff;
+    top: -80px;
+    right: -60px;
+}
+
+.hero-image::after {
+    width: 180px;
+    height: 180px;
+    background: #d4edda;
+    bottom: -60px;
+    left: -40px;
+}
+
+.learning-illustration {
+    width: 78%;
+    max-width: 370px;
+    height: 260px;
+    background: white;
+    border: 1px solid #e4e9f2;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(60,80,120,.12);
+    padding: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.fake-line {
+    height: 12px;
+    border-radius: 10px;
+    background: #e8eaed;
+    margin: 13px 0;
+}
+
+.fake-line.blue {
+    width: 75%;
+    background: #4285f4;
+}
+
+.fake-line.green {
+    width: 55%;
+    background: #34a853;
+}
+
+.fake-line.short {
+    width: 35%;
+}
+
+.fake-boxes {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.fake-box {
+    flex: 1;
+    height: 70px;
+    border-radius: 13px;
+}
+
+.fake-box.one { background: #e8f0fe; }
+.fake-box.two { background: #e6f4ea; }
+.fake-box.three { background: #fef7e0; }
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 30px 7%;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    gap: 20px;
+}
+
+.stat h2 {
+    font-size: 27px;
+    color: var(--blue);
+}
+
+.stat p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* SECTION */
+
+.section {
+    padding: 85px 7%;
+    max-width: 1500px;
+    margin: auto;
+}
+
+.section-heading {
+    text-align: center;
+    margin-bottom: 45px;
+}
+
+.section-heading h2 {
+    font-size: 36px;
+    letter-spacing: -1.2px;
+}
+
+.section-heading p {
+    color: var(--muted);
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+/* SEARCH */
+
+.search-box {
+    max-width: 500px;
+    margin: 0 auto 35px;
+    position: relative;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 16px 22px;
+    border: 1px solid #dadce0;
+    border-radius: 30px;
+    outline: none;
+    font-size: 14px;
+    background: white;
+}
+
+.search-box input:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px #e8f0fe;
+}
+
+/* CARDS */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.card {
+    border: 1px solid var(--border);
+    border-radius: 19px;
+    padding: 25px;
+    background: white;
+    transition: .25s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(60,64,67,.10);
+    border-color: #d2e3fc;
+}
+
+.card-icon {
+    width: 53px;
+    height: 53px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.icon-blue { background: #e8f0fe; }
+.icon-green { background: #e6f4ea; }
+.icon-yellow { background: #fef7e0; }
+.icon-purple { background: #f3e8fd; }
+
+.card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 18px;
+}
+
+.card-link {
+    color: var(--blue);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* FEATURE SECTION */
+
+.feature-section {
+    background: #f8fafd;
+    padding: 75px 7%;
+}
+
+.feature-content {
+    max-width: 1300px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 55px;
+}
+
+.feature-content h2 {
+    font-size: 36px;
+    line-height: 1.25;
+    letter-spacing: -1px;
+}
+
+.feature-content p {
+    color: var(--muted);
+    margin: 20px 0;
+}
+
+.feature-list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.feature-list li {
+    margin: 13px 0;
+    font-size: 14px;
+}
+
+.feature-list li span {
+    color: var(--green);
+    margin-right: 9px;
+}
+
+.feature-art {
+    min-height: 300px;
+    background: #e6f4ea;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+}
+
+/* QUIZ */
+
+.quiz-container {
+    max-width: 650px;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    box-shadow: 0 8px 30px rgba(60,64,67,.06);
+}
+
+.quiz-container h3 {
+    margin-bottom: 10px;
+}
+
+.quiz-container p {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.answer {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    border: 1px solid #dadce0;
+    background: white;
+    border-radius: 12px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.answer:hover {
+    border-color: var(--blue);
+    background: #f8faff;
+}
+
+.answer.correct {
+    background: #e6f4ea;
+    border-color: #34a853;
+}
+
+.answer.wrong {
+    background: #fce8e6;
+    border-color: #ea4335;
+}
+
+#quizResult {
+    font-weight: 600;
+    margin-top: 15px;
+    min-height: 25px;
+}
+
+/* CTA */
+
+.cta {
+    margin: 30px 7% 80px;
+    padding: 65px 25px;
+    background: #e8f0fe;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.cta h2 {
+    font-size: 34px;
+    letter-spacing: -1px;
+}
+
+.cta p {
+    color: var(--muted);
+    margin: 13px 0 25px;
+}
+
+/* FOOTER */
+
+footer {
+    border-top: 1px solid var(--border);
+    padding: 35px 7%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+footer p,
+footer a {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+footer a:hover {
+    color: var(--blue);
+}
+
+/* RESPONSIVE */
+
+@media(max-width: 1000px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero {
+        gap: 30px;
+    }
+}
+
+@media(max-width: 750px) {
+    .navbar {
+        padding: 0 5%;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 74px;
+        left: 0;
+        width: 100%;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 20px 6%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 65px 6%;
+    }
+
+    .hero h1 {
+        font-size: 45px;
+    }
+
+    .hero-image {
+        min-height: 300px;
+    }
+
+    .stats {
+        padding: 25px 5%;
+    }
+
+    .section {
+        padding: 65px 6%;
+    }
+
+    .section-heading h2 {
+        font-size: 29px;
+    }
+
+    .feature-content {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-content h2 {
+        font-size: 30px;
+    }
+
+    .feature-art {
+        min-height: 220px;
+        font-size: 75px;
+    }
+
+    .cta h2 {
+        font-size: 27px;
+    }
+
+    footer {
+        padding: 30px 6%;
+    }
+}
+
+@media(max-width: 480px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
+    .hero h1 {
+        font-size: 39px;
+        letter-spacing: -2px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .learning-illustration {
+        width: 88%;
+    }
+}
+.login-btn {
+    color: #1a73e8 !important;
+    border: 1px solid #1a73e8;
+    padding: 10px 22px;
+    border-radius: 25px;
+    font-weight: 600 !important;
+    transition: .2s;
+}
+
+.login-btn:hover {
+    background: #e8f0fe;
+}
+
+@media (max-width: 750px) {
+    .navbar {
+        height: 68px;
+        padding: 0 5%;
+    }
+
+    .menu-btn {
+        display: block;
+        font-size: 25px;
+        border: none;
+        background: transparent;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        padding: 22px;
+        background: white;
+        border-bottom: 1px solid #e8eaed;
+        box-shadow: 0 8px 20px rgba(0,0,0,.07);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        padding: 8px;
+    }
+
+    .login-btn,
+    .nav-button {
+        text-align: center;
+        display: block;
+    }
+}
+/* PROFESSIONAL HERO IMAGE SLIDER */
+
+.hero-slider {
+    width: 100%;
+    height: 390px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 25px;
+    background: #f1f3f4;
+    box-shadow: 0 12px 35px rgba(0,0,0,.10);
+    touch-action: pan-y;
+}
+
+.slides {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .8s ease, visibility .8s;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    z-index: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.04);
+    transition: transform 5s ease;
+}
+
+.slide.active img {
+    transform: scale(1);
+}
+
+.slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        rgba(0,0,0,.72),
+        rgba(0,0,0,.25),
+        transparent
+    );
+}
+
+.slide-overlay {
+    position: absolute;
+    z-index: 2;
+    left: 8%;
+    bottom: 17%;
+    color: white;
+    max-width: 75%;
+}
+
+.slide-overlay span {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #d2e3fc;
+    margin-bottom: 12px;
+}
+
+.slide-overlay h2 {
+    font-size: clamp(25px, 3vw, 39px);
+    line-height: 1.2;
+    margin-bottom: 12px;
+}
+
+.slide-overlay p {
+    font-size: 14px;
+    color: #f1f3f4;
+}
+
+/* ARROWS */
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 42px;
+    height: 42px;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 50%;
+    background: rgba(255,255,255,.9);
+    color: #202124;
+    font-size: 16px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.slider-arrow:hover {
+    background: #1a73e8;
+    color: white;
+}
+
+.slider-arrow.prev {
+    left: 15px;
+}
+
+.slider-arrow.next {
+    right: 15px;
+}
+
+/* DOTS */
+
+.slider-dots {
+    position: absolute;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 6;
+    display: flex;
+    gap: 8px;
+}
+
+.slider-dot {
+    width: 9px;
+    height: 9px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255,255,255,.65);
+    cursor: pointer;
+    transition: .3s;
+}
+
+.slider-dot.active {
+    width: 25px;
+    background: white;
+}
+
+/* MOBILE RESPONSIVE */
+
+@media(max-width: 750px) {
+    .hero-slider {
+        height: 300px;
+        border-radius: 19px;
+    }
+
+    .slide-overlay {
+        left: 7%;
+        bottom: 17%;
+        max-width: 82%;
+    }
+
+    .slide-overlay h2 {
+        font-size: 27px;
+    }
+
+    .slide-overlay p {
+        font-size: 12px;
+    }
+
+    .slider-arrow {
+        width: 35px;
+        height: 35px;
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 400px) {
+    .hero-slider {
+        height: 260px;
+    }
+
+    .slide-overlay h2 {
+        font-size: 23px;
+    }
+}
+.slide {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  position: absolute;
+  inset: 0;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: white;
+  padding: 16px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.logo {
+  font-size: 26px;
+  font-weight: 800;
+  color: #1a73e8;
+  text-decoration: none;
+}
+
+.main-header nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.main-header nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.main-header nav a:hover {
+  color: #1a73e8;
+}
+
+.login-link, .register-link {
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.register-link {
+  background: #1a73e8;
+  color: white !important;
+}
+
+.learning-section {
+  padding: 65px 5%;
+  background: #f7f9fc;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.section-heading > p {
+  color: #1a73e8;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  font-size: clamp(25px, 4vw, 38px);
+  margin: 10px 0;
+}
+
+.section-heading span {
+  color: #687078;
+}
+
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.module-card {
+  display: block;
+  padding: 25px;
+  border-radius: 15px;
+  background: white;
+  border: 1px solid #e5e7eb;
+  text-decoration: none;
+  color: #202124;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.module-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px #1a73e81a;
+  border-color: #b8d2fa;
+}
+
+.module-card > span {
+  font-size: 34px;
+}
+
+.module-card h3 {
+  margin-bottom: 8px;
+}
+
+.module-card p {
+  color: #687078;
+  line-height: 1.6;
+}
+
+.module-card b {
+  color: #1a73e8;
+}
+
+.menu-toggle {
+  display: none;
+  border: 0;
+  background: transparent;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+@media(max-width: 850px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .main-header {
+    flex-wrap: wrap;
+  }
+
+  .main-header nav {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 18px;
+  }
+
+  .main-header nav.open {
+    display: flex;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+
+<header class="main-header">
+  <a href="index.html" class="logo">Learnora</a>
+
+  <button class="menu-toggle" id="menuBtn"
+          aria-label="Open navigation menu">☰</button>
+
+  <nav id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="study-hub.html">Study Hub</a>
+    <a href="quiz-arena.html">Quiz Arena</a>
+    <a href="science-lab.html">Science Lab</a>
+    <a href="tech-academy.html">Tech Academy</a>
+    <a href="knowledge-world.html">Knowledge World</a>
+    <a href="ai-assistant.html">AI Assistant</a>
+    <a href="dashboard.html">My Dashboard</a>
+    <a href="admin.html">Admin</a>
+    <a href="login.html" class="login-link">Login</a>
+    <a href="register.html" class="register-link">Register</a>
+  </nav>
+</header>
+
+
+
+
+<!-- HERO -->
+
+<main>
+<section class="hero" id="home">
+
+    <div>
+        <div class="tag">✦ YOUR LEARNING SPACE</div>
+
+        <h1>
+            Learn Smarter.<br>
+            <span>Think Bigger.</span>
+        </h1>
+
+        <p>
+            Discover new ideas, build valuable skills, and explore
+            the world of knowledge with Learnora.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#courses" class="primary-btn">Explore Learning →</a>
+            <a href="#about" class="secondary-btn">Discover Learnora</a>
+        </div>
+    </div>
+
+    <div class="hero-slider" id="heroSlider">
+
+    <div class="slides">
+
+        <div class="slide active">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85" alt="Students learning together">
+            <div class="slide-overlay">
+                <span>LEARN TOGETHER</span>
+                <h2>Knowledge Starts Here</h2>
+                <p>Discover new ideas and grow every day.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=1200&q=85" alt="Science laboratory">
+            <div class="slide-overlay">
+                <span>EXPLORE SCIENCE</span>
+                <h2>Discover the Unknown</h2>
+                <p>Explore science through curiosity and creativity.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=85" alt="Technology and digital learning">
+            <div class="slide-overlay">
+                <span>FUTURE TECHNOLOGY</span>
+                <h2>Build Your Digital Future</h2>
+                <p>Discover technology and develop new skills.</p>
+            </div>
+        </div>
+
+        <div class="slide">
+            <img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=1200&q=85" alt="Library and books">
+            <div class="slide-overlay">
+                <span>NEVER STOP LEARNING</span>
+                <h2>Every Page Opens a World</h2>
+                <p>Read, learn, practice, and achieve more.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="slider-arrow prev" id="prevSlide" aria-label="Previous image">❮</button>
+    <button class="slider-arrow next" id="nextSlide" aria-label="Next image">❯</button>
+
+    <div class="slider-dots" id="sliderDots"></div>
+
+</div>
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+    <div class="stat">
+        <h2>Learn</h2>
+        <p>Explore new subjects</p>
+    </div>
+    <div class="stat">
+        <h2>Practice</h2>
+        <p>Test your knowledge</p>
+    </div>
+    <div class="stat">
+        <h2>Grow</h2>
+        <p>Build your future</p>
+    </div>
+</section>
+
+<!-- LEARNING CARDS -->
+
+<!-- LEARNING CARDS -->
+
+<section class="section" id="courses">
+
+    <div class="section-heading">
+        <h2>Explore Learning</h2>
+        <p>Everything you need to discover, practice, and grow.</p>
+    </div>
+
+    <div class="search-box">
+        <input
+            type="search"
+            id="searchInput"
+            placeholder="Search learning topics..."
+            aria-label="Search learning topics"
+        >
+    </div>
+
+    <div class="cards" id="learningCards">
+
+        <article class="card">
+            <div class="card-icon icon-blue">📚</div>
+            <h3>Study Hub</h3>
+            <p>Explore school subjects, notes, and useful study materials.</p>
+            <a href="study-hub.html" class="card-link">Explore →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-yellow">🧠</div>
+            <h3>Quiz Arena</h3>
+            <p>Practice your knowledge with interactive quizzes.</p>
+            <a href="quiz-arena.html" class="card-link">Try a Quiz →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-green">🔬</div>
+            <h3>Science Lab</h3>
+            <p>Discover science, experiments, and amazing facts.</p>
+            <a href="science-lab.html" class="card-link">Discover →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-purple">💻</div>
+            <h3>Tech Academy</h3>
+            <p>Explore programming, computers, and modern technology.</p>
+            <a href="tech-academy.html" class="card-link">Learn More →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-yellow">🌍</div>
+            <h3>Knowledge World</h3>
+            <p>Learn about geography, history, and the world around us.</p>
+            <a href="knowledge-world.html" class="card-link">Explore →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-blue">🤖</div>
+            <h3>AI Assistant</h3>
+            <p>Get help with your learning questions.</p>
+            <a href="ai-assistant.html" class="card-link">Ask AI →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-purple">🚀</div>
+            <h3>Future Skills</h3>
+            <p>Develop creativity, problem-solving, and digital skills.</p>
+            <a href="future-skills.html" class="card-link">Get Started →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-green">📈</div>
+            <h3>My Progress</h3>
+            <p>Track your learning journey and achievements.</p>
+            <a href="dashboard.html" class="card-link">View Progress →</a>
+        </article>
+
+        <article class="card">
+            <div class="card-icon icon-blue">🎓</div>
+            <h3>Student Dashboard</h3>
+            <p>Manage your courses, quizzes, and certificates.</p>
+            <a href="dashboard.html" class="card-link">Open Dashboard →</a>
+        </article>
+
+    </div>
+
+    <p id="noResults"
+       style="display:none;text-align:center;color:#5f6368;margin-top:25px;">
+        No learning topics found.
+    </p>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="feature-section" id="about">
+    <div class="feature-content">
+
+        <div>
+            <div class="tag">WHY LEARNORA?</div>
+
+            <h2>A better way to discover knowledge.</h2>
+
+            <p>
+                Learning should be simple, interesting, and accessible.
+                Learnora brings different learning experiences together
+                in one organized space.
+            </p>
+
+            <ul class="feature-list">
+                <li><span>✓</span> Simple and student-friendly design</li>
+                <li><span>✓</span> Interactive learning experiences</li>
+                <li><span>✓</span> Explore science and technology</li>
+                <li><span>✓</span> Practice with knowledge quizzes</li>
+            </ul>
+
+            <a href="#courses" class="primary-btn">Explore Learnora →</a>
+        </div>
+
+        <div class="feature-art">
+            📖
+        </div>
+
+    </div>
+</section>
+
+<!-- SAMPLE QUIZ -->
+
+<section class="section" id="quiz">
+
+    <div class="section-heading">
+        <h2>Test Your Knowledge</h2>
+        <p>Try this sample science question.</p>
+    </div>
+
+    <div class="quiz-container">
+        <h3>🌱 How do green plants make their food?</h3>
+        <p>Choose the correct answer below.</p>
+
+        <button class="answer" onclick="checkAnswer(this, false)">
+            A. Respiration
+        </button>
+
+        <button class="answer" onclick="checkAnswer(this, true)">
+            B. Photosynthesis
+        </button>
+
+        <button class="answer" onclick="checkAnswer(this, false)">
+            C. Digestion
+        </button>
+
+        <button class="answer" onclick="checkAnswer(this, false)">
+            D. Fermentation
+        </button>
+
+        <div id="quizResult" aria-live="polite"></div>
+
+        <button
+            class="secondary-btn"
+            id="retryBtn"
+            onclick="resetQuiz()"
+            style="display:none;margin-top:15px;"
+        >
+            Try Again
+        </button>
+    </div>
+
+</section>
+
+<!-- CTA -->
+
+<section class="cta">
+    <h2>Start your learning journey.</h2>
+    <p>Explore ideas, practice your knowledge, and keep growing.</p>
+    <a href="#courses" class="primary-btn">Explore Learnora →</a>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+    <div>
+        <a href="#" class="logo">Learn<span>ora.</span></a>
+        <p style="margin-top:8px;">Learn Smarter. Think Bigger.</p>
+    </div>
+
+    <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <p>© <span id="year"></span> Learnora. All rights reserved.</p>
+</footer>
+
+<script>
+// MOBILE NAVIGATION
+
+/* =========================================
+   LEARNORA - COMPLETE JAVASCRIPT
+   ========================================= */
+
+
+/* =========================================
+   1. MOBILE NAVIGATION MENU
+   ========================================= */
+
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn?.addEventListener("click", () => {
+  navLinks?.classList.toggle("open");
+});
+
+navLinks?.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+  });
+});
+
+
+/* =========================================
+   2. SEARCH LEARNING CARDS
+   ========================================= */
+
+const searchInput = document.getElementById("searchInput");
+const cards = document.querySelectorAll(".card");
+const noResults = document.getElementById("noResults");
+
+if (searchInput) {
+    searchInput.addEventListener("input", () => {
+        const searchValue = searchInput.value.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const text = card.innerText.toLowerCase();
+            const matches = text.includes(searchValue);
+
+            card.style.display = matches ? "" : "none";
+
+            if (matches) {
+                visibleCount++;
+            }
+        });
+
+        if (noResults) {
+            noResults.style.display =
+                visibleCount === 0 ? "block" : "none";
+        }
+    });
+}
+
+
+/* =========================================
+   3. QUIZ SYSTEM
+   ========================================= */
+
+let quizAnswered = false;
+
+function checkAnswer(button, isCorrect) {
+    if (quizAnswered || !button) return;
+
+    quizAnswered = true;
+
+    const answers = document.querySelectorAll(".answer");
+    const quizResult = document.getElementById("quizResult");
+    const retryBtn = document.getElementById("retryBtn");
+
+    answers.forEach(answer => {
+        answer.disabled = true;
+    });
+
+    if (isCorrect) {
+        button.classList.add("correct");
+
+        if (quizResult) {
+            quizResult.textContent =
+                "✓ Excellent! Photosynthesis is the correct answer.";
+
+            quizResult.style.color = "#188038";
+        }
+    } else {
+        button.classList.add("wrong");
+
+        if (quizResult) {
+            quizResult.textContent =
+                "Not quite! The correct answer is Photosynthesis.";
+
+            quizResult.style.color = "#d93025";
+        }
+
+        // Highlight the correct answer (second option)
+        if (answers[1]) {
+            answers[1].classList.add("correct");
+        }
+    }
+
+    if (retryBtn) {
+        retryBtn.style.display = "inline-block";
+    }
+}
+
+function resetQuiz() {
+    quizAnswered = false;
+
+    document.querySelectorAll(".answer").forEach(answer => {
+        answer.disabled = false;
+        answer.classList.remove("correct", "wrong");
+    });
+
+    const quizResult = document.getElementById("quizResult");
+    const retryBtn = document.getElementById("retryBtn");
+
+    if (quizResult) {
+        quizResult.textContent = "";
+    }
+
+    if (retryBtn) {
+        retryBtn.style.display = "none";
+    }
+}
+
+
+/* =========================================
+   4. DYNAMIC COPYRIGHT YEAR
+   ========================================= */
+
+const yearElement = document.getElementById("year");
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
+
+
+/* =========================================
+   5. LEARNORA PROFESSIONAL AUTO IMAGE SLIDER
+   ========================================= */
+
+const slider = document.getElementById("heroSlider");
+
+if (slider) {
+
+    const slides = slider.querySelectorAll(".slide");
+    const dotsContainer = document.getElementById("sliderDots");
+
+    const prevButton = document.getElementById("prevSlide");
+    const nextButton = document.getElementById("nextSlide");
+
+    let currentSlide = 0;
+    let sliderTimer = null;
+    let touchStartX = 0;
+
+    const SLIDE_INTERVAL = 4500;
+    const SWIPE_THRESHOLD = 50;
+
+    // Stop if there are no images
+    if (slides.length > 0) {
+
+        /* CREATE SLIDER DOTS */
+
+        let dots = [];
+
+        if (dotsContainer) {
+            dotsContainer.innerHTML = "";
+
+            slides.forEach((slide, index) => {
+                const dot = document.createElement("button");
+
+                dot.type = "button";
+                dot.className = "slider-dot";
+
+                dot.setAttribute(
+                    "aria-label",
+                    `Go to slide ${index + 1}`
+                );
+
+                dot.addEventListener("click", () => {
+                    showSlide(index);
+                    restartSlider();
+                });
+
+                dotsContainer.appendChild(dot);
+                dots.push(dot);
+            });
+        }
+
+
+        /* SHOW SELECTED SLIDE */
+
+        function showSlide(index) {
+
+            currentSlide =
+                (index + slides.length) % slides.length;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle(
+                    "active",
+                    i === currentSlide
+                );
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle(
+                    "active",
+                    i === currentSlide
+                );
+            });
+        }
+
+
+        /* NEXT IMAGE */
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+
+        /* PREVIOUS IMAGE */
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+
+        /* START AUTOMATIC SLIDER */
+
+        function startSlider() {
+            stopSlider();
+
+            if (slides.length > 1) {
+                sliderTimer = setInterval(
+                    nextSlide,
+                    SLIDE_INTERVAL
+                );
+            }
+        }
+
+
+        /* STOP AUTOMATIC SLIDER */
+
+        function stopSlider() {
+            if (sliderTimer) {
+                clearInterval(sliderTimer);
+                sliderTimer = null;
+            }
+        }
+
+
+        /* RESTART AUTOMATIC SLIDER */
+
+        function restartSlider() {
+            startSlider();
+        }
+
+
+        /* ARROW BUTTONS */
+
+        if (nextButton) {
+            nextButton.addEventListener("click", () => {
+                nextSlide();
+                restartSlider();
+            });
+        }
+
+        if (prevButton) {
+            prevButton.addEventListener("click", () => {
+                previousSlide();
+                restartSlider();
+            });
+        }
+
+
+        /* ANDROID TOUCH SWIPE */
+
+        slider.addEventListener("touchstart", event => {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
+
+        slider.addEventListener("touchend", event => {
+            const touchEndX = event.changedTouches[0].screenX;
+            const difference = touchStartX - touchEndX;
+
+            if (Math.abs(difference) > SWIPE_THRESHOLD) {
+
+                if (difference > 0) {
+                    nextSlide();
+                } else {
+                    previousSlide();
+                }
+
+                restartSlider();
+            }
+        }, { passive: true });
+
+
+        /* PAUSE WHEN MOUSE HOVERS */
+
+        slider.addEventListener("mouseenter", stopSlider);
+        slider.addEventListener("mouseleave", startSlider);
+
+
+        /* PAUSE WHEN TAB IS HIDDEN */
+
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                stopSlider();
+            } else {
+                startSlider();
+            }
+        });
+
+
+        /* INITIALIZE SLIDER */
+
+        showSlide(0);
+        startSlider();
+    }
+}
+
+
+/* =========================================
+   6. LEARNORA INITIALIZATION COMPLETE
+   ========================================= */
+
+console.log("Learnora JavaScript loaded successfully!");
+
+
+
+
+</script>
+
+</body>
+</html>

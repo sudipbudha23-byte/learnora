@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Learnora Admin Panel</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="dashboard.html">Learnora.</a>
+  <div class="top-actions">
+    <strong>Admin Panel</strong>
+    <button class="btn btn-outline" id="logoutButton">Logout</button>
+  </div>
+</header>
+
+<main class="main">
+  <h1>Admin Dashboard</h1>
+  <p class="muted">Manage your Learnora learning platform.</p>
+
+  <div class="stats">
+    <article class="stat-card">
+      <p>Total Students</p>
+      <h2 id="studentCount">—</h2>
+    </article>
+    <article class="stat-card">
+      <p>Total Courses</p>
+      <h2 id="courseCount">—</h2>
+    </article>
+    <article class="stat-card">
+      <p>Certificates</p>
+      <h2 id="certificateCount">—</h2>
+    </article>
+  </div>
+
+  <section class="panel">
+    <h2>Add New Course</h2>
+
+    <form id="courseForm">
+      <label for="courseTitle">Course Title</label>
+      <input class="field" id="courseTitle" required maxlength="120">
+
+      <label for="courseCategory">Category</label>
+      <input class="field" id="courseCategory"
+        placeholder="Science, Mathematics, Technology..." required>
+
+      <label for="courseDescription">Description</label>
+      <input class="field" id="courseDescription" required maxlength="500">
+
+      <button class="btn" type="submit">Add Course</button>
+      <p id="courseMessage" class="message" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Course Management</h2>
+    <div id="courseList">Loading courses...</div>
+  </section>
+
+  <section class="panel">
+    <h2>Registered Students</h2>
+    <div id="studentList">Loading students...</div>
+  </section>
+
+  <section class="panel">
+    <h2>Manage Student Progress</h2>
+
+    <form id="progressForm">
+      <label for="studentId">Student ID</label>
+      <input class="field" id="studentId" required>
+
+      <label for="courseId">Course ID</label>
+      <input class="field" id="courseId" type="number" required>
+
+      <label for="progress">Progress (0–100)</label>
+      <input class="field" id="progress"
+        type="number" min="0" max="100" required>
+
+      <button class="btn" type="submit">Update Progress</button>
+      <p id="progressMessage" class="message" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="panel">
+    <h2>Issue Certificate</h2>
+
+    <form id="certificateForm">
+      <label for="certificateStudent">Student ID</label>
+      <input class="field" id="certificateStudent" required>
+
+      <label for="certificateTitle">Certificate Title</label>
+      <input class="field" id="certificateTitle" required>
+
+      <button class="btn" type="submit">Issue Certificate</button>
+      <p id="certificateMessage" class="message" aria-live="polite"></p>
+    </form>
+  </section>
+
+</main>
+
+<script type="module" src="admin.js"></script>
+<section class="admin-section">
+  <h2>Student Enrollment</h2>
+  <p>Enroll students into available courses.</p>
+
+  <form id="enrollmentForm">
+    <label for="studentSelect">Select Student</label>
+    <select id="studentSelect" required>
+      <option value="">Loading students...</option>
+    </select>
+
+    <label for="courseSelect">Select Course</label>
+    <select id="courseSelect" required>
+      <option value="">Loading courses...</option>
+    </select>
+
+    <button type="submit">Enroll Student</button>
+  </form>
+
+  <p id="enrollmentMessage"></p>
+
+  <h3>Current Enrollments</h3>
+  <div id="enrollmentList">
+    Loading enrollments...
+  </div>
+</section>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Learnora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card">
+      <a class="brand" href="index.html">Learnora.</a>
+      <h1>Welcome back</h1>
+      <p class="muted">Sign in to continue your learning journey.</p>
+
+      <form id="loginForm">
+        <label for="email">Email address</label>
+        <input class="field" id="email" type="email"
+          placeholder="you@example.com" autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input class="field" id="password" type="password"
+          placeholder="Enter your password"
+          autocomplete="current-password" required>
+
+        <button class="btn" id="loginButton" type="submit">Login</button>
+        <p id="message" class="message" aria-live="polite"></p>
+      </form>
+
+      <p class="auth-link">
+        Don't have an account? <a href="register.html" style="color:#1a73e8">Create account</a>
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="auth.js"></script>
+</body>
+</html>

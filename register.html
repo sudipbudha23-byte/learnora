@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account | Learnora</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="auth-page">
+    <section class="auth-card">
+      <a class="brand" href="index.html">Learnora.</a>
+      <h1>Create your account</h1>
+      <p class="muted">Join Learnora and start learning today.</p>
+
+      <form id="registerForm">
+        <label for="fullName">Full name</label>
+        <input class="field" id="fullName" type="text"
+          placeholder="Your full name" autocomplete="name" required>
+
+        <label for="email">Email address</label>
+        <input class="field" id="email" type="email"
+          placeholder="you@example.com" autocomplete="email" required>
+
+        <label for="password">Password</label>
+        <input class="field" id="password" type="password"
+          placeholder="At least 8 characters"
+          autocomplete="new-password" minlength="8" required>
+
+        <label for="confirmPassword">Confirm password</label>
+        <input class="field" id="confirmPassword" type="password"
+          placeholder="Enter password again"
+          autocomplete="new-password" minlength="8" required>
+
+        <button class="btn" id="registerButton" type="submit">
+          Create Account
+        </button>
+        <p id="message" class="message" aria-live="polite"></p>
+      </form>
+
+      <p class="auth-link">
+        Already registered? <a href="login.html" style="color:#1a73e8">Login</a>
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff">
+  <title>Learnora | Study Hub</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f7f9fc;
+      color: #202124;
+      font-family: Arial, sans-serif;
+    }
+
+    .study-header {
+      background: white;
+      padding: 16px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: #1a73e8;
+      text-decoration: none;
+    }
+
+    .back-link {
+      text-decoration: none;
+      color: #1a73e8;
+      font-weight: 600;
+    }
+
+    .study-hero {
+      padding: 65px 5%;
+      text-align: center;
+      background: linear-gradient(135deg, #e8f0fe, #f3f7ff);
+    }
+
+    .study-hero span {
+      color: #1a73e8;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    .study-hero h1 {
+      font-size: clamp(30px, 5vw, 48px);
+      margin: 15px 0;
+    }
+
+    .study-hero p {
+      color: #5f6368;
+      line-height: 1.7;
+    }
+
+    .study-container {
+      width: min(1150px, 92%);
+      margin: 45px auto;
+    }
+
+    .search-area {
+      max-width: 600px;
+      margin: 0 auto 35px;
+    }
+
+    .search-area input {
+      width: 100%;
+      padding: 15px 18px;
+      border: 1px solid #dadce0;
+      border-radius: 10px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .search-area input:focus {
+      border-color: #1a73e8;
+    }
+
+    .subject-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+    }
+
+    .subject-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 15px;
+      padding: 23px;
+      transition: .2s;
+    }
+
+    .subject-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px #1a73e81a;
+    }
+
+    .subject-icon {
+      font-size: 36px;
+    }
+
+    .subject-card h2 {
+      font-size: 21px;
+      margin: 15px 0 8px;
+    }
+
+    .subject-card p {
+      color: #687078;
+      line-height: 1.6;
+      min-height: 48px;
+    }
+
+    .subject-card details {
+      margin-top: 15px;
+      border-top: 1px solid #eee;
+      padding-top: 13px;
+    }
+
+    .subject-card summary {
+      color: #1a73e8;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .topic-list {
+      padding-left: 20px;
+      color: #5f6368;
+      line-height: 2;
+    }
+
+    .empty-message {
+      display: none;
+      text-align: center;
+      color: #687078;
+      padding: 30px;
+    }
+
+    .study-footer {
+      text-align: center;
+      padding: 30px 15px;
+      background: white;
+      border-top: 1px solid #e5e7eb;
+      color: #687078;
+    }
+
+    @media(max-width: 600px) {
+      .study-hero {
+        padding: 45px 5%;
+      }
+
+      .study-container {
+        margin: 30px auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="study-header">
+    <a href="index.html" class="logo">Learnora</a>
+    <a href="index.html" class="back-link">← Home</a>
+  </header>
+
+  <main>
+
+    <section class="study-hero">
+      <span>LEARNORA STUDY HUB</span>
+      <h1>Explore. Learn. Achieve.</h1>
+      <p>
+        Discover subjects, explore important topics,
+        and build your knowledge step by step.
+      </p>
+    </section>
+
+    <section class="study-container">
+
+      <div class="search-area">
+        <input
+          type="search"
+          id="subjectSearch"
+          placeholder="Search subjects..."
+          aria-label="Search subjects"
+        >
+      </div>
+
+      <div class="subject-grid" id="subjectGrid">
+
+        <article class="subject-card">
+          <div class="subject-icon">⚛️</div>
+          <h2>Physics</h2>
+          <p>Explore motion, energy, forces, and the laws of nature.</p>
+          <details>
+            <summary>Explore Topics</summary>
+            <ul class="topic-list">
+              <li>Mechanics</li>
+              <li>Motion and Force</li>
+              <li>Work, Energy and Power</li>
+              <li>Waves</li>
+              <li>Electricity</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject-card">
+          <div class="subject-icon">🧪</div>
+          <h2>Chemistry</h2>
+          <p>Understand matter, elements, reactions, and compounds.</p>
+          <details>
+            <summary>Explore Topics</summary>
+            <ul class="topic-list">
+              <li>Atomic Structure</li>
+              <li>Periodic Table</li>
+              <li>Chemical Bonding</li>
+              <li>Acids and Bases</li>
+              <li>Chemical Reactions</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject-card">
+          <div class="subject-icon">🧬</div>
+          <h2>Biology</h2>
+          <p>Discover living organisms, cells, and life processes.</p>
+          <details>
+            <summary>Explore Topics</summary>
+            <ul class="topic-list">
+              <li>Cell Biology</li>
+              <li>Plant Biology</li>
+              <li>Human Biology</li>
+              <li>Genetics</li>
+              <li>Ecology</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject-card">
+          <div class="subject-icon">📐</div>
+          <h2>Mathematics</h2>
+          <p>Develop problem-solving and mathematical reasoning.</p>
+          <details>
+            <summary>Explore Topics</summary>
+            <ul class="topic-list">
+              <li>Algebra</li>
+              <li>Geometry</li>
+              <li>Trigonometry</li>
+              <li>Calculus</li>
+              <li>Statistics</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject-card">
+          <div class="subject-icon">💻</div>
+          <h2>Computer Science</h2>
+          <p>Learn computers, programming, and digital technology.</p>
+          <details>
+            <summary>Explore Topics</summary>
+            <ul class="topic-list">
+              <li>Computer Fundamentals</li>
+              <li>Programming Basics</li>
+              <li>Web Development</li>
+              <li>Database Concepts</li>
+              <li>Artificial Intelligence</li>
+            </ul>
+          </details>
+        </article>
+
+        <article class="subject-card">
+          <div class="subject-icon">📖</div>
+          <h2>English</h2>
+          <p>Improve grammar, vocabulary, writing, and communication.</p>
+          <details>
+            <summary>Explore Topics</summary>
+            <ul class="topic-list">
+              <li>Grammar</li>
+              <li>Vocabulary</li>
+              <li>Reading Skills</li>
+              <li>Writing Skills</li>
+              <li>Communication</li>
+            </ul>
+          </details>
+        </article>
+
+      </div>
+
+      <p class="empty-message" id="emptyMessage">
+        No subjects found. Try another search.
+      </p>
+
+    </section>
+
+  </main>
+
+  <footer class="study-footer">
+    <p>© <span id="year"></span> Learnora. Learn Smarter. Think Bigger.</p>
+  </footer>
+
+  <script>
+    const search = document.getElementById("subjectSearch");
+    const cards = document.querySelectorAll(".subject-card");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    search.addEventListener("input", () => {
+      const query = search.value.toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const matches = card.textContent.toLowerCase().includes(query);
+        card.style.display = matches ? "" : "none";
+
+        if (matches) visibleCount++;
+      });
+
+      emptyMessage.style.display =
+        visibleCount === 0 ? "block" : "none";
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+
+</body>
+</html>
