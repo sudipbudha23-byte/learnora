@@ -417,37 +417,53 @@ function selectAnswer(selectedIndex) {
   nextButton.disabled = false;
 }
 
+
+const GOOGLE_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbx874LBndOfYlg3Pp-v6gqSCA5mleN_k8_9o-A4UDO_9UiTNEy1KLN7IiCVdlEUMHsW/exec";
+
 async function saveResult() {
   const status = document.getElementById("saveStatus");
 
-  try {
-    const { data, error: userError } = await supabase.auth.getUser();
+  const email = localStorage.getItem("learnora_email");
 
-    if (userError || !data.user) {
-      status.textContent =
-        "Login required: Your score is shown, but it was not saved. Please log in to save your result.";
-      return;
+  if (!email) {
+    status.textContent =
+      "Please register or log in before saving your result.";
+    return;
+  }
+
+  const payload = {
+    action: "saveQuiz",
+    email: email,
+    quizTitle: "Learnora General Knowledge Quiz",
+    score: score,
+    totalQuestions: questions.length
+  };
+
+  try {
+    const response = await fetch(GOOGLE_SCRIPT_URL, {
+      method: "POST",
+      redirect: "follow",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+
+    if (!result.success) {
+      throw new Error(result.message || "Unable to save result.");
     }
 
-    const { error } = await supabase
-      .from("quiz_results")
-      .insert({
-        student_id: data.user.id,
-        quiz_title: "Learnora General Knowledge Quiz",
-        score: score,
-        total_questions: questions.length
-      });
-
-    if (error) throw error;
-
-    status.textContent = "✓ Your quiz result has been saved successfully!";
+    status.textContent = "✓ Quiz result saved successfully!";
     status.style.color = "#15803d";
 
   } catch (error) {
-    console.error("Save error:", error);
+    console.error("Google Sheets Error:", error);
 
     status.textContent =
-      "Your score is ready, but saving failed. Check your database setup.";
+      "Could not confirm saving. Please check your Apps Script deployment and try again.";
     status.style.color = "#dc2626";
   }
 }
